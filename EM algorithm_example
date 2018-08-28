@@ -1,0 +1,27 @@
+#data and prior
+n<-1000
+mean<-20
+sd<-1
+mu0<-0
+sd0<-100
+y<-rnorm(n,mean,sd)
+#random start
+set.seed(1)
+start<-rnorm(5,0,100)
+ALL<-matrix(1:5000,nrow=5)
+for (t in 1:5){
+  mu<-start[t]
+  MAX<-1000
+  MU<-NULL
+  for (i in 1:MAX){
+    #E step
+    #------
+    #M step
+    mu<-(mu0/sd0^2+n^2*mean(y)/sum((y-mu)^2))/(1/sd0^2+n^2/sum((y-mu)^2))
+    MU<-c(MU,mu)
+  }
+  ALL[t,]<-MU
+  print(MU[length(MU)])
+}
+
+
