@@ -1,6 +1,6 @@
-# Ian-Holmes
+# Ian-Holmes (test)
 
-Reproduce Ian Holmes' paper on clustering.  
+This contains all of the untested functions, etc.  
 
 ## 20180830  
 
