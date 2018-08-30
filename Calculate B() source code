@@ -1,0 +1,39 @@
+for(i = 0; i < nN; i++){
+    double dProb = 0.0;
+    double dFactor = 0.0;
+    double dSum = 0.0;
+    double adLogStore[nK];
+    double dOffset = -BIG_DBL;
+
+    for(j = 0; j < nS; j++){
+      dSum += (double) aanX[i][j];
+      dFactor += gsl_sf_lngamma((double) aanX[i][j] + 1);
+    }
+
+    dFactor -= gsl_sf_lngamma(dSum + 1.0);
+
+    for(k = 0; k < nK; k++){
+      double dSumAlphaKN = 0.0;
+      double dLogBAlphaN = 0.0;
+      
+      for(j = 0; j < nS; j++){
+	double dAlphaN    = exp(aadLambda[k][j]) + (double) aanX[i][j];
+
+	dSumAlphaKN += dAlphaN;
+	dLogBAlphaN += gsl_sf_lngamma(dAlphaN);
+      }
+
+      dLogBAlphaN -= gsl_sf_lngamma(dSumAlphaKN);
+
+      adLogStore[k] = dLogBAlphaN - adLogBAlpha[k] - dFactor;
+      if(adLogStore[k] > dOffset){
+	dOffset = adLogStore[k];
+      }
+      
+    }
+    
+    for(k = 0; k < nK; k++){
+      dProb += adPi[k]*exp(-dOffset + adLogStore[k]); 
+    }
+    dRet += log(dProb)+dOffset;
+  }
