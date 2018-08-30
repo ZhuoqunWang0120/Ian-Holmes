@@ -1,8 +1,8 @@
-EZIK<-function(K,PI,ALPHA){
+EZIK<-function(K,PI,ALPHA,i,k){
 SUM<-0 
 for (cnt in 1:K){
 SUM<-SUM+PI[cnt]*B(ALPHA[cnt,]+X[i,])/B(ALPHA[cnt,])
 }
 ezik<-(PI[k]*B(ALPHA[k,]+X[i,])/B(ALPHA[k,]))/SUM
-return ezik
+return (ezik)
 }
