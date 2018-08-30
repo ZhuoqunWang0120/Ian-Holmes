@@ -1,4 +1,0 @@
-B<-function(x){
-mbf<-prod(gamma(x))/gamma(sum(x))
-return(mbf)
-}
