@@ -1,0 +1,13 @@
+```
+#General usage:
+./DirichletMixtureGHPFit -in Data.csv -out stub -k no_components
+#Example to fit a 1 component mixture to the test data in directory Data
+./DirichletMixtureGHPFit -in Data/Genera.csv -out Data/Genera_K1 -k 1
+#two components:
+./DirichletMixtureGHPFit -in Data/Genera.csv -out Data/Genera_K2 -k 2 
+#A seed can be set using -l the default is 1. This controls the k-means initialisation.
+#Since outcome of the EM algorithm can vary depending on initialisation we recomend trying a few alternatives
+and choosing the one with the best fit e.g.:
+./DirichletMixtureGHPFit -in Data/Genera.csv -out Data/Genera_K2_lb -k 2 -l 7321
+
+```
