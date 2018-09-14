@@ -149,14 +149,15 @@ hesspi<-function(Q){
   return(h)
 }
 
-#calculate det(H)
-#[可能要用logdet，不确定会不会越界]
-HDET<-function(Q){
-  DETPI<-prod(hesspi(Q))
-  DETLAM<-prod(apply(hesslam(Q),1,function(x){det(as(x,"matrix"))}))
-  DETH<-DETPI*DETLAM
+#calculate logdet(H)
+library(msos)
+lHDET<-function(Q){
+  DETPI<-sum(log(hesspi(Q)))
+  DETLAM<-sum(apply(hesslam(Q),1,function(x){logdet(as(x,"matrix"))}))
+  DETH<-DETPI+DETLAM
   return(DETH)
 }
+
 
 lnnpi<-function(lnEZIK){
   lnpi<-apply(lnEZIK,2,function(x){lsum(x)})
