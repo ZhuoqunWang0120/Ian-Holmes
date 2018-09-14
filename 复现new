@@ -149,5 +149,14 @@ hesspi<-function(Q){
   return(h)
 }
 
+#calculate det(H)
+#this calculates the det of a matrix after replacing diagonal with 0s
+
+HDET<-function(Q){
+  DETPI<-prod(hesspi(Q))
+  DETLAM<-prod(apply(hesslam(Q),1,function(x){det(as(x,"matrix"))}))
+  DETH<-DETPI*DETLAM
+  return(DETH)
+}
 ############################################################################################
 
