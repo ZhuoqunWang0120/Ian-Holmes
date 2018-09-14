@@ -1,0 +1,32 @@
+J<-apply(X,1,function(x){sum(x)})
+S1<-sum(lfactorial(J))
+lfactorialX<-lfactorial(X)
+P<--apply(lfactorialX,1,function(x) {sum(x)})
+S2<-sum(P)
+logEq9<-function(Q){8
+	alpha<-matrix(Q[1:(K*S)],nrow=K,byrow=TRUE)
+	pik<-Q[(K*S+1):(K*(S+1))]
+	lyik<-matrix(0,nrow=N,ncol=K)
+	sum.i<-rep(0,N)
+	for (i in 1:N){
+		for (k in 1:K){
+			lyik[i,k]<-lB(alpha[k,]+X[i,])-lB(alpha[k,])+log(pik[k])
+		}
+		sum.i[i]<-lsum(lyik[i,])
+	}
+	S3<-sum(sum.i)
+	return(S1+S2+S3)
+}
+
+E1<--K*S*log(gamma(ITA))+ITA*K*S*log(NU)
+logEq5<-function(Q){
+	alpha<-matrix(Q[1:(K*S)],nrow=K,byrow=TRUE)
+	E2<--NU*sum(alpha)
+	E3<-(ITA-1)*sum(log(alpha))
+	return(E1+E2+E3)
+}
+Eq14<-function(Q) {
+	approx<-logEq9(Q)+logEq5(Q)+K*(S+1)*log(2*pi)/2-log(HDET(Q))/2
+}
+
+
