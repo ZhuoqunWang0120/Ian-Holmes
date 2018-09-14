@@ -1,7 +1,7 @@
 # Report 4 - Reproducing Ian Holmes' method
 Zhuoqun Wang
 
-##Model description and notations  
+## Model description and notations  
 1. Multinomial sampling  
 Let $X$ be a matrix with elements $X_{ij}=\text{the observed abundance of taxa j in sample i}, i=1,2,...,N, j=1,2,...,S$, where N is the total number of samples, S the total number of taxa. Denote the $i$th row of $X$ by $\bar{X_i}$.  
 Assume $\bar{X_i}$~Multinomial$\bar{p_i}$, then the likelihood of observing sample i is 
@@ -16,14 +16,14 @@ where the mixture prior hyperparameters $Q=(K,\bar{\alpha_1},...,\bar{\alpha_K},
 Let $\bar{\alpha_i}$~Gamma($\eta$,$\nu$) $(i.i.d.)$. In their source code they set $\eta=\nu=0.1$.  
   
 3. Posterior distribution  
-##EM algorithm to find Q  
+## EM algorithm to find Q  
 Reparameterisation: $\alpha_{ij}=e^{\lambda_{ij}}$  
 
 $$\log P(X,Q)\geq E_{Z|X} P(Q,Z|X)=\sum_i\sum_k E_{Z|X}[z_{ik}](\log \pi_k+\log B(\bar{\alpha_k}+\bar{X_i})-B(\bar{\alpha_k}))-\nu\sum_{j,k} \alpha_{jk}+\eta\sum_{j,k} \log(\alpha_{jk})$$
 $$\frac{\partial E_{Z|X}[F(Q,Z)]}{\partial \lambda_{jk}}=\sum_i E[z_{ij}](\Phi(\alpha_{jk}+X_{ik})\alpha_{jk}-\Phi(\sum_t (\alpha_{jt}+X_{it}))\alpha_{jk}-\Phi(\alpha_{jk})\alpha_{jk}+\Phi(\sum_t \alpha_{jt})\alpha_{jk})-\nu\alpha_{jk}+\eta$$
 
   
-##Model comparison
+## Model comparison
 
 $$\frac{\partial^2 E_{Z|X}[F(Q,Z)]}{\partial \lambda_{jk}^2}=\alpha_{jk}\sum_iE[z_{ij}](\Phi(\alpha_{jk}+X_{ik})-\Phi(\sum_t (\alpha_{jt}+X_{it}))-\Phi(\alpha_{jk})+\Phi(\sum_t \alpha_{jt}))+\alpha_{jk}^2(\Phi_1(\alpha_{jk}+X_{ik})-\Phi_1(\sum_t (\alpha_{jt}+X_{it}))-\Phi_1(\alpha_{jk})+\Phi_1(\sum_t \alpha_{jt}))$$  
 $$\frac{\partial^2 E_{Z|X}[F(Q,Z)]}{\partial \lambda_{jk} \lambda_{jl}}=\alpha_{jk}\alpha_{jl}\sum_iE[z_{ij}](-\Phi_1(\sum_t(\alpha_{jt}+X_{it}))+\Phi_1(\sum_t \alpha_{jt}))$$  
