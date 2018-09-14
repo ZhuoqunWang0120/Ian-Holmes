@@ -2,20 +2,19 @@
 Zhuoqun Wang
 
 ## Model description and notations  
-1. Multinomial sampling  
+- Multinomial sampling  
 Let $X$ be a matrix with elements $X_{ij}=\text{the observed abundance of taxa j in sample i}, i=1,2,...,N, j=1,2,...,S$, where N is the total number of samples, S the total number of taxa. Denote the $i$th row of $X$ by $\bar{X_i}$.  
 Assume $\bar{X_i}$~Multinomial$\bar{p_i}$, then the likelihood of observing sample i is 
 $$L_i(\bar{X_i}|\bar{p_i})=(\sum_{j=1}^S X_{ij})! \prod_{j=1}^S \frac{p_{ij}^{X_{ij}}}{X_{ij} !}$$  
 The total likelihood is 
 $$L(X|\bar{p_1},...,\bar{p_N}=\prod_{i=1}^N Li(X_i|\bar{p_i}))$$  
   
-2. Dirichlet mixture priors  
+- Dirichlet mixture priors  
 Each community vector $\bar{p_i}$ is derived from derived from a single metacommunity j with probability $\pi_{j}$. Define indicator vector $\bar{z_i}$, where $z_{ij}=1$ indicates sample i is derived from metacommunity j, then $P(\bar{z_i})=\prod_{k=1}^K \pi_k^{z_{ik}}$ where K is number of metacommunities.  
 Assume $\bar{p_i}$~Dirichlet($\bar{\alpha_i}$), then the complete mixture prior is $$P(\bar{p_i}|Q)=\sum_{k=1}^K Dir(\bar(p_i)|\bar{\alpha_k})\pi_k$$  
 where the mixture prior hyperparameters $Q=(K,\bar{\alpha_1},...,\bar{\alpha_K},\pi_1,...,\pi_K)$.
 Let $\bar{\alpha_i}$~Gamma($\eta$,$\nu$) $(i.i.d.)$. In their source code they set $\eta=\nu=0.1$.  
   
-3. Posterior distribution  
 ## EM algorithm to find Q  
 Reparameterisation: $\alpha_{ij}=e^{\lambda_{ij}}$  
 
@@ -33,7 +32,7 @@ We import OTU table of IBD dataset from previous file.
 load("D:/WANZHUQU/Desktop/HMP_IBD_16S/20180815Report.RData")
 X<-as(t(otu_table(xphy)),"matrix")
 ```  
-##Initialization  
+## Initialization  
 In Ian Holmes' source code, parameters of Gamma prior for $\alpha_{ij}$ are set as $\eta=0.1,\nu=0.1$
 ```r
 N<-nrow(X)
