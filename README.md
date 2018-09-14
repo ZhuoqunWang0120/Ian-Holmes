@@ -1,9 +1,9 @@
 # Report 4 - Reproducing Ian Holmes' method
 Zhuoqun Wang
-
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 ## Model description and notations  
 - Multinomial sampling  
-Let $X$ be a matrix with elements $X_{ij}=\text{the observed abundance of taxa j in sample i}, i=1,2,...,N, j=1,2,...,S$, where N is the total number of samples, S the total number of taxa. Denote the $i$th row of $X$ by $\bar{X_i}$.  
+Let $X$ be a matrix with elements $$X_{ij}=\text{the observed abundance of taxa j in sample i}, i=1,2,...,N, j=1,2,...,S$$, where N is the total number of samples, S the total number of taxa. Denote the $i$th row of $X$ by $\bar{X_i}$.  
 Assume $\bar{X_i}$~Multinomial$\bar{p_i}$, then the likelihood of observing sample i is 
 $$L_i(\bar{X_i}|\bar{p_i})=(\sum_{j=1}^S X_{ij})! \prod_{j=1}^S \frac{p_{ij}^{X_{ij}}}{X_{ij} !}$$  
 The total likelihood is 
