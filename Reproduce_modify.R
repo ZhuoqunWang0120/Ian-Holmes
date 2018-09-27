@@ -7,7 +7,7 @@ library(gsl)
 # colnames(X)<-X[1,]
 # X<-X[-1,]
 # X<-apply(X,1:2,function(y){as.numeric(y)})
-a1<-c(0.0001,0.00012,0.1,0.1)
+a1<-c(0.0001,0.0001,0.1,0.1)
 a2<-c(0.1,0.1,0.0001,0.0001)
 X1<-t(rmultinom(10,1000,a1))
 X2<-t(rmultinom(10,1000,a2))
